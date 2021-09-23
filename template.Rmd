@@ -3,19 +3,73 @@ title: "Simple document"
 output: html_document
 ---
 
-I'm an R Markdown document! 
-
-# Section 1
-
-Here's a **code chunk** that samples from 
-a _normal distribution_:
-
 ```{r}
-samp = rnorm(100)
-length(samp)
+library(tidyverse)
 ```
 
-# Section 2
+##Import some data 
 
-I can take the mean of the sample, too!
-The mean is `r mean(samp)`.
+We want to import 'FAS_litters.csv' . 
+
+```{r}
+litters_df <- read_csv("data/FAS_litters.csv")
+```
+
+Imported Data set, now want better names 
+All variable names should be in case I prefer (snake_case)
+
+opt-command-i to get code chunck
+```{r}
+names(litters_df)
+litters_df <-  janitor::clean_names(litters_df)
+
+```
+
+Now we take a look at the data set.
+Head function lets you print headings and the # after tell R how many rows
+
+```{r}
+print(litters_df)
+
+head(litters_df, 20)
+```
+
+```{r, eval=FALSE}
+view(litters_df)
+```
+^eval=false let markdown not evaluate the code chunk 
+
+here is 'skimr': let you see key stats of data
+```{r}
+skimr::skim(litters_df)
+```
+
+##Arguments in 'read_csv'
+
+look at help files
+
+```{r}
+litters_df <- 
+  read_csv(
+    "data/FAS_litters.csv",
+    skip =5,
+    col_name= FALSE,
+    na="Low8")
+  
+```
+
+```{r}
+litters_data = read_csv(file = "./data/FAS_litters.csv",
+  col_types = cols(
+    Group = col_character(),
+    `Litter Number` = col_character(),
+    `GD0 weight` = col_double(),
+    `GD18 weight` = col_double(),
+    `GD of Birth` = col_integer(),
+    `Pups born alive` = col_integer(),
+    `Pups dead @ birth` = col_integer(),
+    `Pups survive` = col_integer()
+  )
+)
+```
+
