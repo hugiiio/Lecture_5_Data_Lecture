@@ -90,3 +90,8 @@ Try to read a SAS  fule but there are unsupported features in the SAS file
 pulse_df <- read_sas("data/public_pulse_data.sas7bdat")
 ```
 
+
+read.csv is not as good, it prinbts data frame not as a tibble 
+
+Export data
+
