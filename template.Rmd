@@ -5,6 +5,8 @@ output: html_document
 
 ```{r}
 library(tidyverse)
+library(readxl)
+library(haven)
 ```
 
 ##Import some data 
@@ -71,5 +73,20 @@ litters_data = read_csv(file = "./data/FAS_litters.csv",
     `Pups survive` = col_integer()
   )
 )
+```
+
+##How to import excel
+```{r}
+mlb11_df <- read_excel("data/mlb11.xlsx")
+```
+Use sheet argument to goto specific sheet
+
+use range argument to read a range of data frome excel 
+
+
+##SAS files
+Try to read a SAS  fule but there are unsupported features in the SAS file
+```{r, eval=FALSE}
+pulse_df <- read_sas("data/public_pulse_data.sas7bdat")
 ```
 
