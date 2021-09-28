@@ -451,7 +451,10 @@ library(haven)</code></pre>
 <pre class="r"><code>mlb11_df &lt;- read_excel(&quot;data/mlb11.xlsx&quot;)</code></pre>
 <p>Use sheet argument to goto specific sheet</p>
 <p>use range argument to read a range of data frome excel</p>
-<p>##SAS files</p>
+<p>##SAS files Try to read a SAS fule but there are unsupported features in the SAS file</p>
+<pre class="r"><code>pulse_df &lt;- read_sas(&quot;data/public_pulse_data.sas7bdat&quot;)</code></pre>
+<p>read.csv is not as good, it prinbts data frame not as a tibble</p>
+<p>Export data</p>
 
 
 
