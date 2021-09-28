@@ -20,5 +20,68 @@ pups_data = read_csv("./data/FAS_pups.csv",
   col_types = "ciiiii")
 pups_data = janitor::clean_names(pups_data)
 
+view(litters_data)
+```
+##Select columns we care about, and rearrange column, rename columns
+```{r}
+select(litters_data, group, litter_number)
+select(litters_data, group, starts_with("pups"))
+rename(litters_data, GROUP=group)
+relocate(litters_data, litter_number)
+```
+
+##Learning Check:Learning Assessment: In the pups data, select the columns containing litter number, sex, and PD ears.
+
+```{r}
+select(pups_data, litter_number, sex, pd_ears)
+```
+
+##pulling data
+```{r}
+
+pull(litters_data, group)
+```
+
+##filtering rows
+we dont want certian data rows, how to filter it out and get rid of it
+*use"==" as logical operation for equality testing
+```{r}
+filter(litters_data, gd_of_birth==20)
+filter(litters_data, group=="Con7")
+filter(litters_data, gd0_weight<23 )
+filter(litters_data, pups_survive!=4)
+filter(litters_data, group %in% c("Con7", "Con8"))
+```
+
+##Mutate 
+Adding or change columns
+
+```{r}
+mutate(litters_data, 
+       weight_change <-  gd18_weight - gd0_weight,
+       group = str_to_lower(group))
+```
+
+##Arrange
+```{r}
+arrange(litters_data, gd_of_birth, gd0_weight)
+```
+
+
+##Pipes
+Cleaning data
+```{r}
+litters_data_raw <- read_csv("data/FAS_litters.csv")
+litters_clean_name <- janitor::clean_names(litters_data_raw)
+litters_select <- select(litters_clean_name, group, pups_survive)
+litters_filtered <- filter(litters_select, group=="Con7")
+```
+Below does the exactly the same thing but more organized
+```{r}
+litters_data <- 
+  read_csv("data/FAS_litters.csv") %>%
+  janitor::clean_names() %>%
+  select(group, pups_survive) %>%
+  filter(group =="Con7")
 ```
 
