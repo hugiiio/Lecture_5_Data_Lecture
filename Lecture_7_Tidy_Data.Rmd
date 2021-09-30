@@ -1,0 +1,24 @@
+---
+title: "Lecture_7_Tidy_Data"
+output: html_document
+---
+```{r}
+library(tidyverse)
+library(readxl)
+library(haven)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+##Questions
+1. How to change the orgnized version back to the sumamry version?
